@@ -1,51 +1,52 @@
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  ScrollView,
+  Modal,
+  KeyboardAvoidingView,
+  Pressable
 } from "react-native";
 import styles from "./styles";
-import React from "react";
+import React, { useState } from "react";
 
-export default function BodyComponent() {
+export default function BodyComponent(props) {
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>To Do List</Text>
-      <ScrollView>
-        <TouchableOpacity>
+    <>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={10}
+      >
+        <TouchableOpacity onPress={props.openModal}>
           <View style={styles.item}>
             <View style={styles.square}>
-              <Text style={styles.number}>01</Text>
+              <Text style={styles.number}>{props?.id}</Text>
             </View>
-            <Text style={styles.content}>Lau nhà</Text>
+            <Text style={styles.content}>{props?.task}</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.item}>
-            <View style={styles.square}>
-              <Text style={styles.number}>02</Text>
+        {/* {props.modal === true ? (
+          <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            key={props.key}
+            transparent={true}
+            visible={props.modal}
+            onRequestClose={props.closeModal()}>
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>{props.description}</Text>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                >
+                  <Text style={styles.textStyle}>Hide Modal</Text>
+                </Pressable>
+              </View>
             </View>
-            <Text style={styles.content}>Rửa chén</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.item}>
-            <View style={styles.square}>
-              <Text style={styles.number}>03</Text>
-            </View>
-            <Text style={styles.content}>Đi chợ</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.item}>
-            <View style={styles.square}>
-              <Text style={styles.number}>04</Text>
-            </View>
-            <Text style={styles.content}>Nấu ăn</Text>
-          </View>
-        </TouchableOpacity>
-      </ScrollView>
-    </View>
+          </Modal>
+        </View>
+        ) : (<></>)} */}
+      </KeyboardAvoidingView>
+    </>
   );
 }
