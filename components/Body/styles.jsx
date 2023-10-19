@@ -37,11 +37,20 @@ const styles = StyleSheet.create({
   number: {
     color: "#fff",
     fontWeight: "bold",
+    width: '20%'
   },
 
   content: {
-    width: "80%",
+    width: "60%",
     fontWeight: "bold",
+  },
+
+  actions: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '2%'
   },
 
   centeredView: {

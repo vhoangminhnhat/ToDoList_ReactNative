@@ -38,13 +38,25 @@ const data = [
 
 export default function MainComponent() {
   const [taskList, setTaskList] = useState(data);
-  const [modal, setModal] = useState(false);
 
-  // const openModal = async (index, description) => {
-  //   setModal(true);
-  //   await handleDetail(index, description);
-  //   // setModal(true);
-  // };
+  const handleDelete = (index) => {
+    Alert.alert('Warning', 'Do you want to move this out of your list ?', 
+    [
+      {
+        text: 'Yes',
+        onPress: () => {
+          let list = [...taskList];
+          list.splice(index, 1);
+          setTaskList(list);
+        }
+      },
+      {
+        text: 'No',
+        onPress: () => {}
+      }
+    ]
+    )
+  }
 
   const handleDetail = async (description) => {
     Alert.alert("Chi tiết", `${isEmpty(description) ? 'Không có thông tin' : description}`, [
@@ -79,6 +91,7 @@ export default function MainComponent() {
                 key={item.id}
                 task={item?.name}
                 openModal={() => handleDetail(item?.description)}
+                deleteTask = {() => handleDelete(index)}
               />
             );
           })}

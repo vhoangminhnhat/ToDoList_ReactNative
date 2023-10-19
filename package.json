@@ -9,12 +9,16 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@ant-design/icons-react-native": "^2.3.2",
+    "@ant-design/react-native": "^5.0.4",
     "@notifee/react-native": "^7.8.0",
     "expo": "~49.0.13",
     "expo-status-bar": "~1.6.0",
     "lodash": "^4.17.21",
     "react": "18.2.0",
-    "react-native": "0.72.5"
+    "react-native": "0.72.5",
+    "react-native-vector-icons": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
