@@ -6,6 +6,8 @@ import {
   Modal,
   Pressable,
   Alert,
+  TextInput,
+  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import BodyComponent from "./Body";
@@ -38,33 +40,73 @@ const data = [
 
 export default function MainComponent() {
   const [taskList, setTaskList] = useState(data);
+  const [newDescription, setNewDesCription] = useState("");
+
+  const changeDes = (index) => {
+    let list = [...taskList];
+    
+  };
 
   const handleDelete = (index) => {
-    Alert.alert('Warning', 'Do you want to move this out of your list ?', 
-    [
+    Alert.alert("Warning", "Do you want to move this out of your list ?", [
       {
-        text: 'Yes',
+        text: "Yes",
         onPress: () => {
           let list = [...taskList];
           list.splice(index, 1);
           setTaskList(list);
-        }
+        },
       },
       {
-        text: 'No',
-        onPress: () => {}
-      }
-    ]
-    )
-  }
-
-  const handleDetail = async (description) => {
-    Alert.alert("Chi tiết", `${isEmpty(description) ? 'Không có thông tin' : description}`, [
-      {
-        text: "Quay lại",
+        text: "No",
         onPress: () => {},
       },
     ]);
+  };
+
+  const handleDetail = async (index, description) => {
+    Alert.alert(
+      "Chi tiết",
+      `${isEmpty(description) ? "Không có thông tin" : description}`,
+      [
+        {
+          text: "Chỉnh sửa",
+
+          onPress: () => {
+            Alert.alert(
+              "Edit",
+              `${() => {
+                return (
+                  <TextInput
+                    placeholder="Nhập chi tiết"
+                    value={description}
+                    autoCapitalize="sentences"
+                    clearButtonMode="always"
+                    onChangeText={(value) => setNewDesCription(value)}
+                  />
+                );
+              }}`,
+              [
+                {
+                  text: "Save",
+                  onPress: () => {
+                    changeDes(index);
+                  },
+                },
+                {
+                  text: "Back",
+                  onPress: () => {},
+                },
+              ]
+            );
+          },
+        },
+        {
+          text: "Quay lại",
+          onPress: () => {},
+        },
+      ]
+    );
   };
 
   const addMoreTasks = (task) => {
@@ -90,11 +132,12 @@ export default function MainComponent() {
                 id={index + 1}
                 key={item.id}
                 task={item?.name}
-                openModal={() => handleDetail(item?.description)}
-                deleteTask = {() => handleDelete(index)}
+                openModal={() => handleDetail(index, item?.description)}
+                deleteTask={() => handleDelete(index)}
               />
             );
           })}
+          {/* <Button title="Back"/> */}
         </ScrollView>
       </View>
       <FooterComponent addTask={addMoreTasks} />
@@ -110,7 +153,7 @@ const styles = StyleSheet.create({
 
   body: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 80,
     paddingHorizontal: 20,
   },
 

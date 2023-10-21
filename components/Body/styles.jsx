@@ -94,6 +94,20 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
   },
+
+  editImage: {
+    flex:1, 
+    width: 30, 
+    height: 30, 
+    tintColor: '#e6b800'
+  },
+
+  deleteImage: {
+    flex:1, 
+    width: 25, 
+    height: 25, 
+    tintColor: '#e62e00'
+  }
 });
 
 export default styles;

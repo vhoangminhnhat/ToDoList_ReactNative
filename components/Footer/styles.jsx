@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         width: '80%',
         backgroundColor: '#fff',
         borderWidth: 1,
-        borderRadius: '20%',
+        borderRadius: 30,
         borderColor: '#91420a',
         paddingHorizontal: 15,
         fontWeight: 'bold'
