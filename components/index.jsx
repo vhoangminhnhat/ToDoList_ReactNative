@@ -7,6 +7,7 @@ import {
   Pressable,
   Alert,
   TextInput,
+  Image,
   Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -14,6 +15,7 @@ import BodyComponent from "./Body";
 import FooterComponent from "./Footer";
 import ModalComponent from "./components/modal";
 import { isEmpty } from "lodash";
+import { useNavigation } from "@react-navigation/native";
 
 const data = [
   {
@@ -41,6 +43,8 @@ const data = [
 export default function MainComponent() {
   const [taskList, setTaskList] = useState(data);
   const [newDescription, setNewDesCription] = useState("");
+
+  const router = useNavigation();
 
   const changeDes = (index) => {
     let list = [...taskList];
@@ -124,6 +128,8 @@ export default function MainComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.body}>
+        <Button onPress={() => router.navigate('Home')} title="Back"/>
+        {/* <Image source={require('../assets/back.png')} style={styles.backImage} resizeMode="contain"/> */}
         <Text style={styles.header}>To Do List</Text>
         <ScrollView>
           {taskList.map((item, index) => {
@@ -215,4 +221,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
   },
+
+  backImage: { 
+    width: 50, 
+    height: 50,
+    // backgroundColor:
+    // tintColor: '#e6b800'
+  }
 });
